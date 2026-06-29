@@ -213,19 +213,8 @@
 }
 
 function doGet(e) {
-  try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = sheet.getDataRange().getValues();
-    return ContentService.createTextOutput(JSON.stringify({
-      status: "success",
-      data: data
-    })).setMimeType(ContentService.MimeType.JSON);
-  } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({
-      status: "error",
-      message: err.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
-  }
+  return ContentService.createTextOutput(JSON.stringify({ status: "connected" }))
+    .setMimeType(ContentService.MimeType.JSON);
 }</code></pre>
         </div>
 
