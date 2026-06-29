@@ -4,8 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- STATE ---
   let selectedStaff = null;
   let webAppUrl = localStorage.getItem('jb_attendance_webapp_url');
-  if (!webAppUrl || webAppUrl.trim() === '') {
-    webAppUrl = 'https://script.google.com/macros/s/AKfycbwzcPd9GA8m-Ib2uki_rNQFvdxmYPWlbBz-OUb1_KPXEjpM-4e-WzKWYWUAi1r3XdiM6Q/exec';
+  
+  // Auto-migrate old restricted URL to the updated deployment URL
+  const oldUrl = 'https://script.google.com/macros/s/AKfycbz15XfRvL0N0rvDckCWx8PS8MQaJ2HLUWwuMGHSY-RwnuwCF_fJZnmEo3W5czYTHHQmzQ/exec';
+  const newUrl = 'https://script.google.com/macros/s/AKfycbwzcPd9GA8m-Ib2uki_rNQFvdxmYPWlbBz-OUb1_KPXEjpM-4e-WzKWYWUAi1r3XdiM6Q/exec';
+  
+  if (webAppUrl === oldUrl || !webAppUrl || webAppUrl.trim() === '') {
+    localStorage.setItem('jb_attendance_webapp_url', newUrl);
+    webAppUrl = newUrl;
   }
 
   // --- UI ELEMENTS ---
