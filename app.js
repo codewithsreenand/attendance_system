@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- UI ELEMENTS ---
   const views = {
     home: document.getElementById('view-home'),
-    confirm: document.getElementById('view-confirm'),
-    history: document.getElementById('view-history')
+    confirm: document.getElementById('view-confirm')
   };
   
   const staffCards = document.querySelectorAll('.staff-card');
@@ -47,17 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const codeBlock = document.getElementById('apps-script-code');
   const toastContainer = document.getElementById('toast-container');
 
-  // History Elements
-  const btnHistory = document.getElementById('btn-history');
-  const btnBackHistory = document.getElementById('btn-back-history');
-  const btnPrint = document.getElementById('btn-print');
-  const inputSearch = document.getElementById('input-search');
-  const recordCount = document.getElementById('record-count');
-  const tableBodyHistory = document.getElementById('table-body-history');
-  const historyLoading = document.getElementById('history-loading');
-  const historyEmpty = document.getElementById('history-empty');
 
-  let attendanceRecords = [];
 
   // Prepopulate Web App URL input
   if (webAppUrl) {
@@ -285,131 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- HISTORY VIEW LOGIC ---
-  btnHistory.addEventListener('click', () => {
-    switchView('history');
-    fetchHistory();
-  });
 
-  btnBackHistory.addEventListener('click', () => {
-    switchView('home');
-  });
-
-  btnPrint.addEventListener('click', () => {
-    window.print();
-  });
-
-  inputSearch.addEventListener('input', () => {
-    renderHistoryTable(attendanceRecords);
-  });
-
-  async function fetchHistory() {
-    if (!webAppUrl) {
-      showToast('Google Sheets Web App is not configured. Open settings to link it.', 'warning');
-      historyLoading.classList.add('hidden');
-      historyEmpty.classList.remove('hidden');
-      return;
-    }
-
-    // Set UI to loading state
-    historyLoading.classList.remove('hidden');
-    historyEmpty.classList.add('hidden');
-    tableBodyHistory.innerHTML = '';
-    recordCount.textContent = '0 Records';
-
-    try {
-      const response = await fetch(webAppUrl);
-      const result = await response.json();
-
-      historyLoading.classList.add('hidden');
-
-      if (result.status === 'success' && Array.isArray(result.data)) {
-        attendanceRecords = result.data;
-        renderHistoryTable(attendanceRecords);
-      } else {
-        console.error('API Error:', result.message);
-        showToast('Failed to fetch logs from Google Sheets.', 'error');
-        historyEmpty.classList.remove('hidden');
-      }
-    } catch (error) {
-      console.error('Fetch Error:', error);
-      showToast('Network error while retrieving logs.', 'error');
-      historyLoading.classList.add('hidden');
-      historyEmpty.classList.remove('hidden');
-    }
-  }
-
-  function renderHistoryTable(records) {
-    tableBodyHistory.innerHTML = '';
-    
-    if (!records || records.length === 0) {
-      historyEmpty.classList.remove('hidden');
-      recordCount.textContent = '0 Records';
-      return;
-    }
-
-    let startIndex = 0;
-    // Skip header row if it exists
-    if (records.length > 0 && (records[0][0].toString().toLowerCase().includes('date') || records[0][1].toString().toLowerCase().includes('name'))) {
-      startIndex = 1;
-    }
-
-    const searchQuery = inputSearch.value.toLowerCase().trim();
-    let matchCount = 0;
-
-    for (let i = startIndex; i < records.length; i++) {
-      const row = records[i];
-      if (!row || row.length < 3) continue;
-
-      const dateVal = row[0];
-      const nameVal = row[1] ? row[1].toString() : '';
-      const actionVal = row[2] ? row[2].toString() : '';
-      const timeVal = row[3] ? row[3].toString() : '';
-      const notesVal = row[4] ? row[4].toString() : '';
-
-      // Check filters
-      if (searchQuery !== '') {
-        const matchesName = nameVal.toLowerCase().includes(searchQuery);
-        const matchesNotes = notesVal.toLowerCase().includes(searchQuery);
-        const matchesAction = actionVal.toLowerCase().includes(searchQuery);
-        if (!matchesName && !matchesNotes && !matchesAction) {
-          continue;
-        }
-      }
-
-      matchCount++;
-
-      // Date conversion & formatting
-      const dateObj = new Date(dateVal);
-      let dateString = dateVal;
-      if (!isNaN(dateObj.getTime())) {
-        const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
-        const timeOptions = { hour: '2-digit', minute: '2-digit' };
-        dateString = `${dateObj.toLocaleDateString('en-US', dateOptions)} ${dateObj.toLocaleTimeString('en-US', timeOptions)}`;
-      }
-
-      // Action Pill class
-      const actionClass = actionVal.toLowerCase() === 'check out' ? 'check-out' : 'check-in';
-
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${dateString}</td>
-        <td style="font-weight: 600;">${nameVal}</td>
-        <td><span class="status-pill ${actionClass}">${actionVal}</span></td>
-        <td style="font-family: var(--font-mono); color: #a5b4fc;">${timeVal}</td>
-        <td style="color: var(--text-muted); font-size: 0.9rem;">${notesVal}</td>
-      `;
-      tableBodyHistory.appendChild(tr);
-    }
-
-    recordCount.textContent = `${matchCount} Record${matchCount === 1 ? '' : 's'}`;
-
-    if (matchCount === 0) {
-      historyEmpty.classList.remove('hidden');
-    } else {
-      historyEmpty.classList.add('hidden');
-    }
-  }
 
   // --- TOAST SYSTEM ---
   function showToast(message, type = 'info') {
