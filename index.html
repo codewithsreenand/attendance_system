@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JB Developers | Attendance Portal</title>
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glowing elements -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon">JB</div>
+        <div class="logo-text">
+          <h1>JB Developers</h1>
+          <span>Attendance Portal</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-history" class="icon-button" title="Attendance History">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </button>
+        <button id="btn-settings" class="icon-button" title="Configure Google Sheets">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="app-content">
+      <!-- VIEW 1: STAFF SELECTION -->
+      <section id="view-home" class="view active">
+        <div class="view-header">
+          <h2>Welcome Back</h2>
+          <p>Please select your profile to record your attendance</p>
+        </div>
+        
+        <div class="staff-grid">
+          <!-- Sreenand Card -->
+          <div class="staff-card" data-staff="Sreenand" data-image="staff_photo/sreenand.jpg">
+            <div class="card-image-wrapper">
+              <img src="staff_photo/sreenand.jpg" alt="Sreenand" onerror="this.src='https://api.dicebear.com/7.x/initials/svg?seed=Sreenand&backgroundColor=4f46e5'">
+              <div class="card-overlay">
+                <span class="tap-to-select">Select Profile</span>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3>Sreenand</h3>
+              <span class="role-badge">Lead Developer</span>
+            </div>
+          </div>
+
+          <!-- Jasim Card -->
+          <div class="staff-card" data-staff="Jasim" data-image="jasim.png">
+            <div class="card-image-wrapper">
+              <img src="jasim.png" alt="Jasim" onerror="this.src='https://api.dicebear.com/7.x/initials/svg?seed=Jasim&backgroundColor=0ea5e9'">
+              <div class="card-overlay">
+                <span class="tap-to-select">Select Profile</span>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3>Jasim</h3>
+              <span class="role-badge">Full Stack Developer</span>
+            </div>
+          </div>
+
+          <!-- Ameen Card -->
+          <div class="staff-card" data-staff="Ameen" data-image="ameen.png">
+            <div class="card-image-wrapper">
+              <img src="ameen.png" alt="Ameen" onerror="this.src='https://api.dicebear.com/7.x/initials/svg?seed=Ameen&backgroundColor=10b981'">
+              <div class="card-overlay">
+                <span class="tap-to-select">Select Profile</span>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3>Ameen</h3>
+              <span class="role-badge">UI/UX Designer</span>
+            </div>
+          </div>
+
+          <!-- Afifa Card -->
+          <div class="staff-card" data-staff="Afifa" data-image="afifa.png">
+            <div class="card-image-wrapper">
+              <img src="afifa.png" alt="Afifa" onerror="this.src='https://api.dicebear.com/7.x/initials/svg?seed=Afifa&backgroundColor=ec4899'">
+              <div class="card-overlay">
+                <span class="tap-to-select">Select Profile</span>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3>Afifa</h3>
+              <span class="role-badge">Frontend Developer</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: CONFIRM ATTENDANCE -->
+      <section id="view-confirm" class="view">
+        <button id="btn-back" class="text-button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to Profiles
+        </button>
+
+        <div class="confirm-container">
+          <!-- Left: Profile Display -->
+          <div class="profile-summary">
+            <div class="profile-avatar-glow"></div>
+            <img id="confirm-avatar" class="profile-avatar" src="" alt="Selected Staff">
+            <h2 id="confirm-name">Staff Name</h2>
+            <span id="confirm-role" class="role-badge">Staff Member</span>
+          </div>
+
+          <!-- Right: Clock & Submit Form -->
+          <div class="action-panel">
+            <div class="clock-display">
+              <div id="live-time" class="time-text">12:00:00</div>
+              <div id="live-date" class="date-text">Monday, June 29, 2026</div>
+            </div>
+
+            <!-- Segmented Control for Check In / Out -->
+            <div class="segmented-control">
+              <input type="radio" id="radio-in" name="action-type" value="Check In" checked>
+              <label for="radio-in" class="segment-label label-in">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                Check In
+              </label>
+              
+              <input type="radio" id="radio-out" name="action-type" value="Check Out">
+              <label for="radio-out" class="segment-label label-out">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                Check Out
+              </label>
+            </div>
+
+            <div class="input-group">
+              <label for="input-note">Notes (Optional)</label>
+              <input type="text" id="input-note" placeholder="e.g., Working remotely, client site..." maxlength="60">
+            </div>
+
+            <button id="btn-submit-attendance" class="primary-button">
+              <span class="btn-text">Confirm Attendance</span>
+              <div class="btn-spinner hidden"></div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: ATTENDANCE HISTORY -->
+      <section id="view-history" class="view">
+        <div class="history-controls-bar">
+          <button id="btn-back-history" class="text-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Profiles
+          </button>
+          
+          <div class="history-filters">
+            <div class="search-box">
+              <input type="text" id="input-search" placeholder="Search by name or notes...">
+            </div>
+            
+            <button id="btn-print" class="primary-button print-button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              Print Report (PDF)
+            </button>
+          </div>
+        </div>
+
+        <div class="history-card">
+          <div class="history-card-header">
+            <h3>Attendance Log (Till Date)</h3>
+            <span class="record-count" id="record-count">0 Records</span>
+          </div>
+          
+          <div class="table-container">
+            <table class="history-table" id="table-history">
+              <thead>
+                <tr>
+                  <th>Date & Time</th>
+                  <th>Staff Name</th>
+                  <th>Action</th>
+                  <th>Clock Time</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="table-body-history">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+            
+            <div class="table-loading" id="history-loading">
+              <div class="btn-spinner"></div>
+              <span>Fetching logs from Google Sheet...</span>
+            </div>
+            
+            <div class="table-empty hidden" id="history-empty">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <p>No attendance logs found. Make sure your Google Sheet is set up correctly and has entries.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div id="modal-settings" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Google Sheets Configuration</h3>
+        <button id="btn-close-settings" class="icon-button close-button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-description">Link this application directly to your Google Sheet by deploying a Google Apps Script Web App.</p>
+        
+        <div class="input-group">
+          <label for="input-web-app-url">Google Apps Script Web App URL</label>
+          <div class="url-input-container">
+            <input type="url" id="input-web-app-url" placeholder="https://script.google.com/macros/s/.../exec">
+            <button id="btn-save-settings" class="small-button">Save</button>
+          </div>
+          <span class="status-indicator" id="settings-status"></span>
+        </div>
+
+        <div class="setup-tabs">
+          <button class="tab-button active" data-tab="tab-script">1. Apps Script Code</button>
+          <button class="tab-button" data-tab="tab-instructions">2. Setup Instructions</button>
+        </div>
+
+        <div id="tab-script" class="tab-content active">
+          <div class="code-header">
+            <span>Google Apps Script Code</span>
+            <button id="btn-copy-code" class="text-button copy-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              Copy Code
+            </button>
+          </div>
+          <pre><code id="apps-script-code">function doPost(e) {
+  try {
+    var data = JSON.parse(e.postData.contents);
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    
+    // Add columns: Date, Name, Action, Clock Time, Notes
+    sheet.appendRow([
+      new Date(),
+      data.name,
+      data.action,
+      data.timeString,
+      data.notes || ""
+    ]);
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "success",
+      message: "Attendance recorded successfully!"
+    })).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "error",
+      message: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = sheet.getDataRange().getValues();
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "success",
+      data: data
+    })).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "error",
+      message: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}</code></pre>
+        </div>
+
+        <div id="tab-instructions" class="tab-content">
+          <ol class="setup-steps">
+            <li>Open your target Google Sheet.</li>
+            <li>Go to <strong>Extensions</strong> &rarr; <strong>Apps Script</strong>.</li>
+            <li>Clear any code and paste the code from Tab 1.</li>
+            <li>Click <strong>Save</strong> (disk icon).</li>
+            <li>Click <strong>Deploy</strong> &rarr; <strong>New deployment</strong>.</li>
+            <li>Select type <strong>Web app</strong> (gear icon).</li>
+            <li>Set "Execute as" to <strong>Me</strong>.</li>
+            <li>Set "Who has access" to <strong>Anyone</strong> (crucial for form submissions).</li>
+            <li>Click <strong>Deploy</strong>, grant permissions, and copy the **Web App URL**.</li>
+            <li>Paste it in the URL input above and click <strong>Save</strong>.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION CONTAINER (Toasts) -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
