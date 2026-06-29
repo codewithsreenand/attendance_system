@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedStaff = null;
   let webAppUrl = localStorage.getItem('jb_attendance_webapp_url');
   if (!webAppUrl || webAppUrl.trim() === '') {
-    webAppUrl = 'https://script.google.com/macros/s/AKfycbw9gDyZb48cxL-EVJVJgRnMPFBDHOsLzwbLak0V1pJJpCHRwO9jp4kovXfyYvXRBi4fUg/exec';
+    webAppUrl = 'https://script.google.com/macros/s/AKfycbwzcPd9GA8m-Ib2uki_rNQFvdxmYPWlbBz-OUb1_KPXEjpM-4e-WzKWYWUAi1r3XdiM6Q/exec';
   }
 
   // --- UI ELEMENTS ---
